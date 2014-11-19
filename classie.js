@@ -25,7 +25,7 @@ function classReg( className ) {
 
 // classList support for class management
 // altho to be fair, the api sucks because it won't accept multiple classes at once
-var hasClass, addClass, removeClass;
+var hasClass, addClass, removeClass, switchClass;
 
 if ( 'classList' in document.documentElement ) {
   hasClass = function( elem, c ) {
@@ -57,17 +57,24 @@ function toggleClass( elem, c ) {
   fn( elem, c );
 }
 
+function switchClass( elem, add, rem ) {
+    removeClass( elem, rem );
+    addClass( elem, add );
+}
+
 var classie = {
   // full names
   hasClass: hasClass,
   addClass: addClass,
   removeClass: removeClass,
   toggleClass: toggleClass,
+  switchClass: switchClass,
   // short names
   has: hasClass,
   add: addClass,
   remove: removeClass,
-  toggle: toggleClass
+  toggle: toggleClass,
+  switch: switchClass,
 };
 
 // transport
